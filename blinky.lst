@@ -1,0 +1,523 @@
+   1               		.file	"blinky.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               		.section	.text.morse_character,"ax",@progbits
+  19               	.global	morse_character
+  21               	morse_character:
+  22               	.LFB7:
+  23               	.LSM0:
+  24               	.LVL0:
+  25 0000 0F93      		push r16
+  26 0002 1F93      		push r17
+  27 0004 CF93      		push r28
+  28 0006 DF93      		push r29
+  29               	/* prologue: function */
+  30               	/* frame size = 0 */
+  31 0008 182F      		mov r17,r24
+  32               	.LSM1:
+  33 000a 8032      		cpi r24,lo8(32)
+  34 000c 01F4      		brne .L2
+  35               	.LSM2:
+  36 000e 80E0      		ldi r24,lo8(__c.1393)
+  37 0010 90E0      		ldi r25,hi8(__c.1393)
+  38               	.LVL1:
+  39 0012 0E94 0000 		call print_P
+  40 0016 80EE      		ldi r24,lo8(5600)
+  41 0018 95E1      		ldi r25,hi8(5600)
+  42               	.LVL2:
+  43               	.LBB58:
+  44               	.LBB59:
+  45               	.LBB60:
+  46               	.LBB61:
+  47               	.LSM3:
+  48 001a 20E9      		ldi r18,lo8(400)
+  49 001c 31E0      		ldi r19,hi8(400)
+  50               	.L3:
+  51 001e F901      		movw r30,r18
+  52               	.LVL3:
+  53               	/* #APP */
+  54               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+  55 0020 3197      		1: sbiw r30,1
+  56 0022 01F4      		brne 1b
+  57               	 ;  0 "" 2
+  58               	/* #NOAPP */
+  59               	.LBE61:
+  60               	.LBE60:
+  61               	.LSM4:
+  62 0024 0197      		sbiw r24,1
+  63               	.LSM5:
+  64 0026 01F4      		brne .L3
+  65 0028 00C0      		rjmp .L14
+  66               	.LVL4:
+  67               	.L2:
+  68               	.LBE59:
+  69               	.LBE58:
+  70               	.LSM6:
+  71 002a 8154      		subi r24,lo8(-(-65))
+  72               	.LVL5:
+  73 002c 8A31      		cpi r24,lo8(26)
+  74 002e 00F0      		brlo .L5
+  75               	.LSM7:
+  76 0030 80E0      		ldi r24,lo8(__c.1395)
+  77 0032 90E0      		ldi r25,hi8(__c.1395)
+  78 0034 0E94 0000 		call print_P
+  79               	.LSM8:
+  80 0038 812F      		mov r24,r17
+  81 003a 0E94 0000 		call usb_debug_putchar
+  82               	.LSM9:
+  83 003e 80E0      		ldi r24,lo8(__c.1397)
+  84 0040 90E0      		ldi r25,hi8(__c.1397)
+  85 0042 0E94 0000 		call print_P
+  86 0046 00C0      		rjmp .L14
+  87               	.L5:
+  88               	.LSM10:
+  89 0048 80E0      		ldi r24,lo8(__c.1399)
+  90 004a 90E0      		ldi r25,hi8(__c.1399)
+  91 004c 0E94 0000 		call print_P
+  92               	.LSM11:
+  93 0050 812F      		mov r24,r17
+  94 0052 0E94 0000 		call usb_debug_putchar
+  95               	.LSM12:
+  96 0056 8AE3      		ldi r24,lo8(58)
+  97 0058 0E94 0000 		call usb_debug_putchar
+  98               	.LBB62:
+  99               	.LSM13:
+ 100 005c E12F      		mov r30,r17
+ 101 005e F0E0      		ldi r31,lo8(0)
+ 102               	.LVL6:
+ 103 0060 E050      		subi r30,lo8(-(morse_code_table-65))
+ 104 0062 F040      		sbci r31,hi8(-(morse_code_table-65))
+ 105               	.LVL7:
+ 106               	/* #APP */
+ 107               	 ;  96 "blinky.c" 1
+ 108 0064 E491      		lpm r30, Z
+ 109               		
+ 110               	 ;  0 "" 2
+ 111               	.LVL8:
+ 112               	/* #NOAPP */
+ 113               	.LBE62:
+ 114               	.LSM14:
+ 115 0066 0E2F      		mov r16,r30
+ 116               	.LVL9:
+ 117 0068 0770      		andi r16,lo8(7)
+ 118 006a 1E2F      		mov r17,r30
+ 119               	.LVL10:
+ 120               	.LBB63:
+ 121               	.LBB64:
+ 122               	.LBB65:
+ 123               	.LBB66:
+ 124               	.LSM15:
+ 125 006c C0E9      		ldi r28,lo8(400)
+ 126 006e D1E0      		ldi r29,hi8(400)
+ 127 0070 00C0      		rjmp .L6
+ 128               	.LVL11:
+ 129               	.L12:
+ 130               	.LBE66:
+ 131               	.LBE65:
+ 132               	.LBE64:
+ 133               	.LBE63:
+ 134               	.LSM16:
+ 135 0072 5E9A      		sbi 43-32,6
+ 136               	.LSM17:
+ 137 0074 17FF      		sbrs r17,7
+ 138 0076 00C0      		rjmp .L7
+ 139               	.LSM18:
+ 140 0078 80E0      		ldi r24,lo8(__c.1404)
+ 141 007a 90E0      		ldi r25,hi8(__c.1404)
+ 142               	.LVL12:
+ 143 007c 0E94 0000 		call print_P
+ 144               	.LVL13:
+ 145 0080 80E6      		ldi r24,lo8(2400)
+ 146 0082 99E0      		ldi r25,hi8(2400)
+ 147               	.LVL14:
+ 148               	.L8:
+ 149               	.LBB70:
+ 150               	.LBB71:
+ 151               	.LBB72:
+ 152               	.LBB73:
+ 153               	.LSM19:
+ 154 0084 FE01      		movw r30,r28
+ 155               	.LVL15:
+ 156               	/* #APP */
+ 157               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 158 0086 3197      		1: sbiw r30,1
+ 159 0088 01F4      		brne 1b
+ 160               	 ;  0 "" 2
+ 161               	/* #NOAPP */
+ 162               	.LBE73:
+ 163               	.LBE72:
+ 164               	.LSM20:
+ 165 008a 0197      		sbiw r24,1
+ 166               	.LSM21:
+ 167 008c 01F4      		brne .L8
+ 168 008e 00C0      		rjmp .L9
+ 169               	.LVL16:
+ 170               	.L7:
+ 171               	.LBE71:
+ 172               	.LBE70:
+ 173               	.LSM22:
+ 174 0090 80E0      		ldi r24,lo8(__c.1406)
+ 175 0092 90E0      		ldi r25,hi8(__c.1406)
+ 176               	.LVL17:
+ 177 0094 0E94 0000 		call print_P
+ 178               	.LVL18:
+ 179 0098 80E2      		ldi r24,lo8(800)
+ 180 009a 93E0      		ldi r25,hi8(800)
+ 181               	.LVL19:
+ 182               	.L10:
+ 183               	.LBB74:
+ 184               	.LBB69:
+ 185               	.LBB68:
+ 186               	.LBB67:
+ 187               	.LSM23:
+ 188 009c FE01      		movw r30,r28
+ 189               	.LVL20:
+ 190               	/* #APP */
+ 191               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 192 009e 3197      		1: sbiw r30,1
+ 193 00a0 01F4      		brne 1b
+ 194               	 ;  0 "" 2
+ 195               	/* #NOAPP */
+ 196               	.LBE67:
+ 197               	.LBE68:
+ 198               	.LSM24:
+ 199 00a2 0197      		sbiw r24,1
+ 200               	.LSM25:
+ 201 00a4 01F4      		brne .L10
+ 202               	.LVL21:
+ 203               	.L9:
+ 204               	.LBE69:
+ 205               	.LBE74:
+ 206               	.LSM26:
+ 207 00a6 5E98      		cbi 43-32,6
+ 208 00a8 80E2      		ldi r24,lo8(800)
+ 209 00aa 93E0      		ldi r25,hi8(800)
+ 210               	.LVL22:
+ 211               	.L11:
+ 212               	.LBB75:
+ 213               	.LBB76:
+ 214               	.LBB77:
+ 215               	.LBB78:
+ 216               	.LSM27:
+ 217 00ac FE01      		movw r30,r28
+ 218               	.LVL23:
+ 219               	/* #APP */
+ 220               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 221 00ae 3197      		1: sbiw r30,1
+ 222 00b0 01F4      		brne 1b
+ 223               	 ;  0 "" 2
+ 224               	/* #NOAPP */
+ 225               	.LBE78:
+ 226               	.LBE77:
+ 227               	.LSM28:
+ 228 00b2 0197      		sbiw r24,1
+ 229               	.LSM29:
+ 230 00b4 01F4      		brne .L11
+ 231               	.LBE76:
+ 232               	.LBE75:
+ 233               	.LSM30:
+ 234 00b6 110F      		lsl r17
+ 235               	.LSM31:
+ 236 00b8 0150      		subi r16,lo8(-(-1))
+ 237               	.LVL24:
+ 238               	.L6:
+ 239 00ba 0023      		tst r16
+ 240 00bc 01F4      		brne .L12
+ 241               	.LSM32:
+ 242 00be 80E0      		ldi r24,lo8(__c.1411)
+ 243 00c0 90E0      		ldi r25,hi8(__c.1411)
+ 244               	.LVL25:
+ 245 00c2 0E94 0000 		call print_P
+ 246               	.LVL26:
+ 247 00c6 80E4      		ldi r24,lo8(1600)
+ 248 00c8 96E0      		ldi r25,hi8(1600)
+ 249               	.LVL27:
+ 250               	.LBB79:
+ 251               	.LBB80:
+ 252               	.LBB81:
+ 253               	.LBB82:
+ 254               	.LSM33:
+ 255 00ca 20E9      		ldi r18,lo8(400)
+ 256 00cc 31E0      		ldi r19,hi8(400)
+ 257               	.L13:
+ 258 00ce F901      		movw r30,r18
+ 259               	.LVL28:
+ 260               	/* #APP */
+ 261               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 262 00d0 3197      		1: sbiw r30,1
+ 263 00d2 01F4      		brne 1b
+ 264               	 ;  0 "" 2
+ 265               	/* #NOAPP */
+ 266               	.LBE82:
+ 267               	.LBE81:
+ 268               	.LSM34:
+ 269 00d4 0197      		sbiw r24,1
+ 270               	.LSM35:
+ 271 00d6 01F4      		brne .L13
+ 272               	.LVL29:
+ 273               	.L14:
+ 274               	/* epilogue start */
+ 275               	.LBE80:
+ 276               	.LBE79:
+ 277               	.LSM36:
+ 278 00d8 DF91      		pop r29
+ 279 00da CF91      		pop r28
+ 280 00dc 1F91      		pop r17
+ 281               	.LVL30:
+ 282 00de 0F91      		pop r16
+ 283               	.LVL31:
+ 284 00e0 0895      		ret
+ 285               	.LFE7:
+ 287               		.section	.text.morse_P,"ax",@progbits
+ 288               	.global	morse_P
+ 290               	morse_P:
+ 291               	.LFB8:
+ 292               	.LSM37:
+ 293               	.LVL32:
+ 294 0000 CF93      		push r28
+ 295 0002 DF93      		push r29
+ 296               	/* prologue: function */
+ 297               	/* frame size = 0 */
+ 298 0004 EC01      		movw r28,r24
+ 299               	.LVL33:
+ 300               	.L22:
+ 301               	.LSM38:
+ 302 0006 FE01      		movw r30,r28
+ 303               	.LVL34:
+ 304               	.LBB83:
+ 305               	.LSM39:
+ 306 0008 2196      		adiw r28,1
+ 307               	/* #APP */
+ 308               	 ;  121 "blinky.c" 1
+ 309 000a 8491      		lpm r24, Z
+ 310               		
+ 311               	 ;  0 "" 2
+ 312               	.LVL35:
+ 313               	/* #NOAPP */
+ 314               	.LBE83:
+ 315               	.LSM40:
+ 316 000c 8823      		tst r24
+ 317 000e 01F0      		breq .L21
+ 318               	.LSM41:
+ 319 0010 0E94 0000 		call morse_character
+ 320               	.LVL36:
+ 321 0014 00C0      		rjmp .L22
+ 322               	.LVL37:
+ 323               	.L21:
+ 324               	.LSM42:
+ 325 0016 80E0      		ldi r24,lo8(__c.1432)
+ 326 0018 90E0      		ldi r25,hi8(__c.1432)
+ 327               	.LVL38:
+ 328 001a 0E94 0000 		call print_P
+ 329               	.LVL39:
+ 330               	/* epilogue start */
+ 331               	.LSM43:
+ 332 001e DF91      		pop r29
+ 333 0020 CF91      		pop r28
+ 334               	.LVL40:
+ 335 0022 0895      		ret
+ 336               	.LFE8:
+ 338               		.section	.text.main,"ax",@progbits
+ 339               	.global	main
+ 341               	main:
+ 342               	.LFB6:
+ 343               	.LSM44:
+ 344 0000 1F93      		push r17
+ 345 0002 CF93      		push r28
+ 346 0004 DF93      		push r29
+ 347               	/* prologue: function */
+ 348               	/* frame size = 0 */
+ 349               	.LSM45:
+ 350 0006 80E8      		ldi r24,lo8(-128)
+ 351 0008 8093 6100 		sts 97,r24
+ 352 000c 1092 6100 		sts 97,__zero_reg__
+ 353               	.LSM46:
+ 354 0010 569A      		sbi 42-32,6
+ 355               	.LSM47:
+ 356 0012 5E98      		cbi 43-32,6
+ 357               	.LSM48:
+ 358 0014 0E94 0000 		call usb_init
+ 359 0018 10E0      		ldi r17,lo8(0)
+ 360               	.LVL41:
+ 361               	.LBB84:
+ 362               	.LBB85:
+ 363               	.LBB86:
+ 364               	.LBB87:
+ 365               	.LSM49:
+ 366 001a C0E9      		ldi r28,lo8(400)
+ 367 001c D1E0      		ldi r29,hi8(400)
+ 368 001e 00C0      		rjmp .L32
+ 369               	.LVL42:
+ 370               	.L27:
+ 371               	.LBE87:
+ 372               	.LBE86:
+ 373               	.LBE85:
+ 374               	.LBE84:
+ 375               	.LSM50:
+ 376 0020 80E0      		ldi r24,lo8(__c.1372)
+ 377 0022 90E0      		ldi r25,hi8(__c.1372)
+ 378               	.LVL43:
+ 379 0024 0E94 0000 		call morse_P
+ 380               	.LVL44:
+ 381 0028 88E9      		ldi r24,lo8(15000)
+ 382 002a 9AE3      		ldi r25,hi8(15000)
+ 383               	.LVL45:
+ 384               	.L26:
+ 385               	.LBB91:
+ 386               	.LBB92:
+ 387               	.LBB93:
+ 388               	.LBB94:
+ 389               	.LSM51:
+ 390 002c FE01      		movw r30,r28
+ 391               	.LVL46:
+ 392               	/* #APP */
+ 393               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 394 002e 3197      		1: sbiw r30,1
+ 395 0030 01F4      		brne 1b
+ 396               	 ;  0 "" 2
+ 397               	/* #NOAPP */
+ 398               	.LBE94:
+ 399               	.LBE93:
+ 400               	.LSM52:
+ 401 0032 0197      		sbiw r24,1
+ 402               	.LSM53:
+ 403 0034 01F4      		brne .L26
+ 404               	.LBE92:
+ 405               	.LBE91:
+ 406               	.LSM54:
+ 407 0036 1F5F      		subi r17,lo8(-(1))
+ 408               	.L32:
+ 409 0038 1630      		cpi r17,lo8(6)
+ 410 003a 00F0      		brlo .L27
+ 411               	.LSM55:
+ 412 003c 80E0      		ldi r24,lo8(__c.1377)
+ 413 003e 90E0      		ldi r25,hi8(__c.1377)
+ 414               	.LVL47:
+ 415 0040 0E94 0000 		call morse_P
+ 416               	.LVL48:
+ 417 0044 80E4      		ldi r24,lo8(-25536)
+ 418 0046 9CE9      		ldi r25,hi8(-25536)
+ 419               	.LVL49:
+ 420               	.L28:
+ 421               	.LBB95:
+ 422               	.LBB90:
+ 423               	.LBB89:
+ 424               	.LBB88:
+ 425               	.LSM56:
+ 426 0048 FE01      		movw r30,r28
+ 427               	.LVL50:
+ 428               	/* #APP */
+ 429               	 ;  105 "/usr/lib/gcc/avr/4.3.4/../../../avr/include/util/delay_basic.h" 1
+ 430 004a 3197      		1: sbiw r30,1
+ 431 004c 01F4      		brne 1b
+ 432               	 ;  0 "" 2
+ 433               	/* #NOAPP */
+ 434               	.LBE88:
+ 435               	.LBE89:
+ 436               	.LSM57:
+ 437 004e 0197      		sbiw r24,1
+ 438               	.LSM58:
+ 439 0050 01F4      		brne .L28
+ 440 0052 10E0      		ldi r17,lo8(0)
+ 441 0054 00C0      		rjmp .L27
+ 442               	.LBE90:
+ 443               	.LBE95:
+ 444               	.LFE6:
+ 446               	.global	morse_code_table
+ 447               		.section	.progmem.data,"a",@progbits
+ 450               	morse_code_table:
+ 451 0000 42        		.byte	66
+ 452 0001 84        		.byte	-124
+ 453 0002 A4        		.byte	-92
+ 454 0003 83        		.byte	-125
+ 455 0004 01        		.byte	1
+ 456 0005 24        		.byte	36
+ 457 0006 C3        		.byte	-61
+ 458 0007 04        		.byte	4
+ 459 0008 02        		.byte	2
+ 460 0009 74        		.byte	116
+ 461 000a A3        		.byte	-93
+ 462 000b 44        		.byte	68
+ 463 000c C2        		.byte	-62
+ 464 000d 82        		.byte	-126
+ 465 000e E3        		.byte	-29
+ 466 000f 64        		.byte	100
+ 467 0010 D4        		.byte	-44
+ 468 0011 43        		.byte	67
+ 469 0012 03        		.byte	3
+ 470 0013 81        		.byte	-127
+ 471 0014 23        		.byte	35
+ 472 0015 14        		.byte	20
+ 473 0016 63        		.byte	99
+ 474 0017 94        		.byte	-108
+ 475 0018 B4        		.byte	-76
+ 476 0019 C4        		.byte	-60
+ 479               	__c.1432:
+ 480 001a 0A00      		.string	"\n"
+ 483               	__c.1411:
+ 484 001c 0A00      		.string	"\n"
+ 487               	__c.1406:
+ 488 001e 2064 6974 		.string	" dit"
+ 488      00
+ 491               	__c.1404:
+ 492 0023 2064 6168 		.string	" dah"
+ 492      00
+ 495               	__c.1399:
+ 496 0028 4368 6172 		.string	"Char "
+ 496      2000 
+ 499               	__c.1397:
+ 500 002e 0A00      		.string	"\n"
+ 503               	__c.1395:
+ 504 0030 4F70 7073 		.string	"Opps, unsupported character: "
+ 504      2C20 756E 
+ 504      7375 7070 
+ 504      6F72 7465 
+ 504      6420 6368 
+ 507               	__c.1393:
+ 508 004e 5370 6163 		.string	"Space\n"
+ 508      650A 00
+ 511               	__c.1377:
+ 512 0055 444F 4553 		.string	"DOES ANYBODY STILL KNOW MORSE CODE?"
+ 512      2041 4E59 
+ 512      424F 4459 
+ 512      2053 5449 
+ 512      4C4C 204B 
+ 515               	__c.1372:
+ 516 0079 534F 5300 		.string	"SOS"
+ 557               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 blinky.c
+     /tmp/cc0SfVcp.s:2      *ABS*:000000000000003f __SREG__
+     /tmp/cc0SfVcp.s:3      *ABS*:000000000000003e __SP_H__
+     /tmp/cc0SfVcp.s:4      *ABS*:000000000000003d __SP_L__
+     /tmp/cc0SfVcp.s:5      *ABS*:0000000000000034 __CCP__
+     /tmp/cc0SfVcp.s:6      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc0SfVcp.s:7      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc0SfVcp.s:21     .text.morse_character:0000000000000000 morse_character
+     /tmp/cc0SfVcp.s:507    .progmem.data:000000000000004e __c.1393
+     /tmp/cc0SfVcp.s:503    .progmem.data:0000000000000030 __c.1395
+     /tmp/cc0SfVcp.s:499    .progmem.data:000000000000002e __c.1397
+     /tmp/cc0SfVcp.s:495    .progmem.data:0000000000000028 __c.1399
+     /tmp/cc0SfVcp.s:450    .progmem.data:0000000000000000 morse_code_table
+     /tmp/cc0SfVcp.s:491    .progmem.data:0000000000000023 __c.1404
+     /tmp/cc0SfVcp.s:487    .progmem.data:000000000000001e __c.1406
+     /tmp/cc0SfVcp.s:483    .progmem.data:000000000000001c __c.1411
+     /tmp/cc0SfVcp.s:290    .text.morse_P:0000000000000000 morse_P
+     /tmp/cc0SfVcp.s:479    .progmem.data:000000000000001a __c.1432
+     /tmp/cc0SfVcp.s:341    .text.main:0000000000000000 main
+     /tmp/cc0SfVcp.s:515    .progmem.data:0000000000000079 __c.1372
+     /tmp/cc0SfVcp.s:511    .progmem.data:0000000000000055 __c.1377
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+print_P
+usb_debug_putchar
+usb_init
