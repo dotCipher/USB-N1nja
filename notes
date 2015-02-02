@@ -1,0 +1,12 @@
+1.) avr-gcc -g -Os -mmcu=atmega8 -c flash.c
+
+this produces an object file called flash.o which then needs to be
+linked using:
+
+2.) avr-gcc -g -mmcu=atmega8 -o flash.elf flash.o
+
+this has now produced a binary file called flash.elf, which is
+a GNU executable file. we gotta mess with it a bit more and grab
+some bits out of it to make the hex file
+
+3.) avr-objcopy -j .text -j .data -O ihex flash.elf flash.hex
